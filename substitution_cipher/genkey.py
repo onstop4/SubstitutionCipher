@@ -9,7 +9,7 @@ system_random = SystemRandom()
 
 def generate_key():
     key = {}
-    letters_available = list(system_random.sample(string.ascii_uppercase, k=26))
+    letters_available = list(system_random.sample(string.ascii_lowercase, k=26))
 
     for index, letter in enumerate(string.ascii_lowercase):
         key[letter] = letters_available[index]

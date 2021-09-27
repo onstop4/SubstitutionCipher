@@ -9,7 +9,7 @@ def reverse_dict(dictionary):
 def decrypt_text(text, key):
     result = []
     for character in text:
-        shifted = key.get(character.upper())
+        shifted = key.get(character.lower())
         if shifted:
             result.append(shifted)
 
