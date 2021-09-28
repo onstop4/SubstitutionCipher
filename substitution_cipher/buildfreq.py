@@ -38,7 +38,7 @@ def main():
     counter = count_chars_in_file(args.input)
     letter_freq = get_letter_frequency(counter)
 
-    for k, v in letter_freq.items():
+    for k, v in sorted(letter_freq.items(), key=lambda kv: kv[1]):
         print("{} : {:.5f}".format(k, v))
 
 
