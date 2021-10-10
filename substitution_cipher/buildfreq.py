@@ -4,12 +4,21 @@ from string import ascii_lowercase
 
 
 def parse_args():
+    """
+    Parses command line arguments.
+    """
     parser = ArgumentParser()
+    # User must specify input file.
     parser.add_argument("input")
     return parser.parse_args()
 
 
-def count_chars_in_file(input_filename: dict):
+def count_chars_in_file(input_filename: str) -> Counter:
+    """
+    Iterates line-by-line through specified file and counts the characters present in
+    each line. Returns resulting Counter. All letters (uppercase and lowercase) are
+    counted as lowercase letters.
+    """
     counter = Counter()
 
     with open(input_filename, encoding="utf8") as input_file:
@@ -19,7 +28,10 @@ def count_chars_in_file(input_filename: dict):
     return counter
 
 
-def get_letter_frequency(char_counter: Counter):
+def get_letter_frequency(char_counter: Counter) -> dict:
+    """
+    Returns dict mapping letters to their specific frequencies (as decimals).
+    """
     letter_count = {}
     total = 0
 
@@ -33,12 +45,17 @@ def get_letter_frequency(char_counter: Counter):
 
 
 def main():
+    """
+    Called when running this Python file as a script.
+    """
     args = parse_args()
 
     counter = count_chars_in_file(args.input)
     letter_freq = get_letter_frequency(counter)
 
+    # Sorts output based on frequencies, so highest frequency letter will come last.
     for k, v in sorted(letter_freq.items(), key=lambda kv: kv[1]):
+        # Prints letter and frequency up to fifth decimal place.
         print("{} : {:.5f}".format(k, v))
 
 

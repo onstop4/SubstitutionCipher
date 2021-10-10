@@ -7,23 +7,34 @@ import string
 system_random = SystemRandom()
 
 
-def generate_key():
-    key = {}
-    letters_available = list(system_random.sample(string.ascii_lowercase, k=26))
-
-    for index, letter in enumerate(string.ascii_lowercase):
-        key[letter] = letters_available[index]
-
-    return key
-
-
 def parse_args():
+    """
+    Parses command line arguments.
+    """
     parser = ArgumentParser()
+    # Allows user to specify output file.
     parser.add_argument("-o", "--output", default="key.json")
     return parser.parse_args()
 
 
+def generate_key() -> dict:
+    """
+    Generates a key (in the form of a dict) that for encryption/descryption using the
+    substitution cipher.
+    """
+    key = {}
+    scrambled_letters = system_random.sample(string.ascii_lowercase, k=26)
+
+    for index, letter in enumerate(string.ascii_lowercase):
+        key[letter] = scrambled_letters[index]
+
+    return key
+
+
 def main():
+    """
+    Called when running this Python file as a script.
+    """
     args = parse_args()
     filename = args.output
 
