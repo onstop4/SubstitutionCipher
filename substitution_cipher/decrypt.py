@@ -24,8 +24,8 @@ def parse_args():
 
 
 def decrypt_file(input_filename, output_filename, key):
-    with open(input_filename) as input_file:
-        with open(output_filename, "w") as output_file:
+    with open(input_filename, encoding="utf8") as input_file:
+        with open(output_filename, "w", encoding="utf8") as output_file:
             for line in input_file:
                 output_file.write(decrypt_text(line, key) + "\n")
 
