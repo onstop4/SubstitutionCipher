@@ -8,22 +8,27 @@ def parse_args():
     Parses command line arguments.
     """
     parser = ArgumentParser()
+    parser.add_argument("--fast", action="store_true")
     # User must specify input file.
     parser.add_argument("input")
     return parser.parse_args()
 
 
-def count_chars_in_file(input_filename: str) -> Counter:
+def count_chars_in_file(input_filename: str, line_by_line: bool = True) -> Counter:
     """
     Iterates line-by-line through specified file and counts the characters present in
     each line. Returns resulting Counter. All letters (uppercase and lowercase) are
-    counted as lowercase letters.
+    counted as lowercase letters. The parameter line_by_line determines whether to read
+    the file line-by-line (the default) or to read it all at once.
     """
     counter = Counter()
 
     with open(input_filename, encoding="utf8") as input_file:
-        for line in input_file:
-            counter.update(line.lower())
+        if line_by_line:
+            for line in input_file:
+                counter.update(line.lower())
+        else:
+            counter.update(input_file.read().lower())
 
     return counter
 
@@ -50,7 +55,9 @@ def main():
     """
     args = parse_args()
 
-    counter = count_chars_in_file(args.input)
+    # Will read entire input file if "--fast" is passed.
+    # Otherwise, input file will be read line-by-line.
+    counter = count_chars_in_file(args.input, not args.fast)
     letter_freq = get_letter_frequency(counter)
 
     # Sorts output based on frequencies, so highest frequency letter will come last.
