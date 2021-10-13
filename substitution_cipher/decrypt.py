@@ -68,6 +68,8 @@ def main():
     args = parse_args()
 
     with open(args.key) as key_file:
+        # The dict needs to be reversed so that ciphertext letters can be used to look
+        # up plaintext letters.
         key = reverse_dict(json.load(key_file))
 
     if args.files:

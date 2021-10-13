@@ -40,12 +40,13 @@ def get_letter_frequency(char_counter: Counter) -> dict:
     letter_count = {}
     total = 0
 
+    # Extracts the counts of the letters in the Counter to a separate dict.
     for letter in ascii_lowercase:
         count = char_counter[letter]
         letter_count[letter] = count
         total += count
 
-    # OrderedDict is not needed since dicts preserve order since Python 3.7.
+    # Returns a new dict mapping letters to their frequencies.
     return {k: v / total for k, v in letter_count.items()}
 
 
