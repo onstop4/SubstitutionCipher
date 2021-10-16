@@ -31,7 +31,7 @@ def decrypt_text(text: str, key: dict) -> str:
     """
     result = []
     for character in text:
-        shifted = key.get(character.lower())
+        shifted = key.get(character.upper())
         if shifted:
             result.append(shifted)
 

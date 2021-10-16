@@ -23,7 +23,7 @@ def generate_key() -> dict:
     substitution cipher.
     """
     key = {}
-    scrambled_letters = system_random.sample(string.ascii_lowercase, k=26)
+    scrambled_letters = system_random.sample(string.ascii_uppercase, k=26)
 
     # Maps plaintext letters to ciphertext letters.
     for index, letter in enumerate(string.ascii_lowercase):
