@@ -1,3 +1,4 @@
+# Ignore any generated keys used for manual testing.
 *.json
 
 # Byte-compiled / optimized / DLL files
