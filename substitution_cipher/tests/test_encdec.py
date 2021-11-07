@@ -73,21 +73,41 @@ decryption_samples = {
 
 
 def test_reverse_dict():
+    """
+    Tests :py:func:`substitution_cipher.decrypt.reverse_dict`.
+    """
     assert reverse_dict(key) == reversed_key
 
 
 class TestHandleText:
+    """
+    Tests the encryption/decryption of strings.
+    """
+
     def test_encrypt_text(self):
+        """
+        Tests :py:func:`substitution_cipher.encrypt.encrypt_text`.
+        """
         for original, encrypted in encryption_samples.items():
             assert encrypt_text(original, key) == encrypted
 
     def test_decrypt_text(self):
+        """
+        Tests :py:func:`substitution_cipher.decrypt.decrypt_text`.
+        """
         for encrypted, decrypted in decryption_samples.items():
             assert decrypt_text(encrypted, reversed_key) == decrypted
 
 
 class TestHandleFiles:
+    """
+    Tests the encryption/decryption of plaintext (UTF-8) files.
+    """
+
     def test_encrypt_file(self, tmpdir):
+        """
+        Tests :py:func:`substitution_cipher.encrypt.encrypt_file`.
+        """
         input_filename = tmpdir.join("input.txt")
         output_filename = tmpdir.join("output.txt")
 
@@ -101,6 +121,9 @@ class TestHandleFiles:
             assert output_file.read() == expected
 
     def test_decrypt_file(self, tmpdir):
+        """
+        Tests :py:func:`substitution_cipher.decrypt.decrypt_file`.
+        """
         input_filename = tmpdir.join("input.txt")
         output_filename = tmpdir.join("output.txt")
 

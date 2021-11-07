@@ -2,6 +2,9 @@ from substitution_cipher.genkey import generate_key
 
 
 def test_generate_key():
+    """
+    Tests :py:func:`substitution_cipher.genkey.generate_key`.
+    """
     key = generate_key()
 
     assert len(key) == 26
