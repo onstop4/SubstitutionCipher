@@ -34,7 +34,7 @@ def test_count_chars_in_file_line_by_line(tmpdir):
     input_filename = tmpdir.join("input.txt")
 
     for k, v in samples.items():
-        with open(input_filename, "w") as input_file:
+        with open(input_filename, "w", encoding="utf8") as input_file:
             input_file.write(k)
 
         assert v == count_chars_in_file(input_filename, True)
@@ -48,7 +48,7 @@ def test_count_chars_in_file_all_at_once(tmpdir):
     input_filename = tmpdir.join("input.txt")
 
     for k, v in samples.items():
-        with open(input_filename, "w") as input_file:
+        with open(input_filename, "w", encoding="utf8") as input_file:
             input_file.write(k)
 
         assert v == count_chars_in_file(input_filename, False)

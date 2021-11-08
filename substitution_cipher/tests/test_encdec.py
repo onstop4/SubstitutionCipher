@@ -111,13 +111,13 @@ class TestHandleFiles:
         input_filename = tmpdir.join("input.txt")
         output_filename = tmpdir.join("output.txt")
 
-        with open(input_filename, "w") as input_file:
+        with open(input_filename, "w", encoding="utf8") as input_file:
             input_file.write("\n".join(encryption_samples.keys()))
 
         encrypt_file(input_filename, output_filename, key)
 
         expected = "\n".join(encryption_samples.values()) + "\n"
-        with open(output_filename) as output_file:
+        with open(output_filename, encoding="utf8") as output_file:
             assert output_file.read() == expected
 
     def test_decrypt_file(self, tmpdir):
@@ -127,11 +127,11 @@ class TestHandleFiles:
         input_filename = tmpdir.join("input.txt")
         output_filename = tmpdir.join("output.txt")
 
-        with open(input_filename, "w") as input_file:
+        with open(input_filename, "w", encoding="utf8") as input_file:
             input_file.write("\n".join(decryption_samples.keys()))
 
         decrypt_file(input_filename, output_filename, reversed_key)
 
         expected = "\n".join(decryption_samples.values()) + "\n"
-        with open(output_filename) as output_file:
+        with open(output_filename, encoding="utf8") as output_file:
             assert output_file.read() == expected
